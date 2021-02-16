@@ -32,7 +32,15 @@ class List {
         head = head.next;
     }
     public void addLast(int value) {
-        // implement me!
+        if (head == null) {
+            addFirst(value);
+        } else {
+            Elem p = head;
+            while (p.next != null) {
+                p = p.next;
+            }
+            p.next = new Elem(value, null);
+        }
     }
 }
 
@@ -46,5 +54,12 @@ public class L2 {
 
         list1.addFirst(3);
         list1.print();
+
+        list1.addLast(7);
+        list1.print();
+
+        List list2 = new List();
+        list2.addLast(7);
+        list2.print();
     }
 }
