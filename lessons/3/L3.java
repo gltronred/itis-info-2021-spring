@@ -45,9 +45,15 @@ public class L3 {
 
         printList(demo1);
         System.out.println(isSorted(demo1));
+
         printList(demo2);
         System.out.println(isSorted(demo2));
+        smoothList(demo2);
+        System.out.println(isSorted(demo2));
+
         printList(demo3);
+        System.out.println(isSorted(demo3));
+        smoothList(demo3);
         System.out.println(isSorted(demo3));
     }
 }
