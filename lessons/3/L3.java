@@ -28,7 +28,18 @@ public class L3 {
     }
 
     public static void smoothList(List<Integer> list) {
-        // Implement me!
+        ListIterator<Integer> iter = list.listIterator();
+        if (iter.hasNext()) {
+            Integer prev = iter.next();
+            while (iter.hasNext()) {
+                Integer cur = iter.next();
+                if (prev > cur) {
+                    iter.set(prev);
+                    cur = prev;
+                }
+                prev = cur;
+            }
+        }
     }
 
     public static void main(String[] args) {
@@ -50,10 +61,12 @@ public class L3 {
         System.out.println(isSorted(demo2));
         smoothList(demo2);
         System.out.println(isSorted(demo2));
+        printList(demo2);
 
         printList(demo3);
         System.out.println(isSorted(demo3));
         smoothList(demo3);
         System.out.println(isSorted(demo3));
+        printList(demo3);
     }
 }
