@@ -16,7 +16,15 @@ public class L3 {
     }
 
     public static void printList(List<Integer> list) {
-        // Implement me!
+        System.out.print("[");
+        ListIterator<Integer> iter = list.listIterator();
+        while (iter.hasNext()) {
+            System.out.print(iter.next());
+            if (iter.hasNext()) {
+                System.out.print(",");
+            }
+        }
+        System.out.println("]");
     }
 
     public static void smoothList(List<Integer> list) {
@@ -35,8 +43,11 @@ public class L3 {
 
         List<Integer> demo3 = new LinkedList<>();
 
+        printList(demo1);
         System.out.println(isSorted(demo1));
+        printList(demo2);
         System.out.println(isSorted(demo2));
+        printList(demo3);
         System.out.println(isSorted(demo3));
     }
 }
