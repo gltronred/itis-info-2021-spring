@@ -4,11 +4,13 @@ public class L3 {
     public static boolean isSorted(List<Integer> list) {
         boolean sorted = true;
         ListIterator<Integer> iter = list.listIterator();
-        Integer prev = iter.next();
-        while (iter.hasNext() && sorted) {
-            Integer cur = iter.next();
-            sorted &= (prev <= cur);
-            prev = cur;
+        if (iter.hasNext()) {
+            Integer prev = iter.next();
+            while (iter.hasNext() && sorted) {
+                Integer cur = iter.next();
+                sorted &= (prev <= cur);
+                prev = cur;
+            }
         }
         return sorted;
     }
@@ -23,7 +25,10 @@ public class L3 {
         for(int i=0; i<10; i++)
             demo2.add(random.nextInt(10));
 
+        List<Integer> demo3 = new LinkedList<>();
+
         System.out.println(isSorted(demo1));
         System.out.println(isSorted(demo2));
+        System.out.println(isSorted(demo3));
     }
 }
