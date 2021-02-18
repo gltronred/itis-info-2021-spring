@@ -15,6 +15,14 @@ public class L3 {
         return sorted;
     }
 
+    public static void printList(List<Integer> list) {
+        // Implement me!
+    }
+
+    public static void smoothList(List<Integer> list) {
+        // Implement me!
+    }
+
     public static void main(String[] args) {
         List<Integer> demo1 = new LinkedList<>();
         for (int i = 0; i < 10; i++)
