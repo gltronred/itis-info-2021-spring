@@ -8,6 +8,7 @@ public class L3 {
         while (iter.hasNext() && sorted) {
             Integer cur = iter.next();
             sorted &= (prev <= cur);
+            prev = cur;
         }
         return sorted;
     }
