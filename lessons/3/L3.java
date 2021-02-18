@@ -2,8 +2,14 @@ import java.util.*;
 
 public class L3 {
     public static boolean isSorted(List<Integer> list) {
-        // Implement me!
-        return false;
+        boolean sorted = true;
+        ListIterator<Integer> iter = list.listIterator();
+        Integer prev = iter.next();
+        while (iter.hasNext() && sorted) {
+            Integer cur = iter.next();
+            sorted &= (prev <= cur);
+        }
+        return sorted;
     }
 
     public static void main(String[] args) {
