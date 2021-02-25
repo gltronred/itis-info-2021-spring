@@ -15,7 +15,13 @@ public class L4 {
     // >>> 3 5 2 6 15 25 0 10 1 6 4
     // 3 6 15 0 6
     public static void f2(LinkedList<Integer> list) {
-        return;
+        ListIterator<Integer> iter = list.listIterator();
+        while (iter.hasNext()) {
+            Integer el = iter.next();
+            if (el % 3 != 0) {
+                iter.remove();
+            }
+        }
     }
     public static LinkedList<Integer> mkList() {
         LinkedList<Integer> list = new LinkedList<>();
@@ -39,7 +45,7 @@ public class L4 {
         System.out.println();
     }
     public static void main(String[] args) {
-        List<Integer> list = mkList();
+        LinkedList<Integer> list = mkList();
         f1(list);
         printList(list);
 
