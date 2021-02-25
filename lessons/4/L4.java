@@ -6,8 +6,31 @@ public class L4 {
     //
     // >>> 3 5 2 6 15 25 0 10 1 6 4
     // 3 6 15 0
+    //
+    // (отладочный вывод закомментирован;
+    // попробуйте раскомментировать и подумать над ним)
     public static void f1(LinkedList<Integer> list) {
-        return;
+        ListIterator<Integer> iter = list.listIterator();
+        // Если нет ни одного элемента, ничего не делаем
+        if (!iter.hasNext()) return;
+
+        Integer prev = iter.next();
+        while (iter.hasNext()) {
+            Integer cur = iter.next();
+            // System.out.println("next: " + prev + " " + cur);
+            if (prev % 3 != 0 || cur % 5 != 0) {
+                Integer d1 = iter.previous();
+                Integer d2 = iter.previous();
+                // System.out.println("prev: " + d1 + " " + d2);
+                // System.out.println("del: " + d2);
+                iter.remove();
+                cur = iter.next();
+                // System.out.println("move: " + cur);
+            }
+            prev = cur;
+        }
+        // Удаляем последний элемент - после него нет кратного 5
+        iter.remove();
     }
 
     // Оставить в списке только элементы, которые делятся на 3
