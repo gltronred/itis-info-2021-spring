@@ -54,13 +54,13 @@ public class L5 {
     }
     public static void main(String[] args) {
         Random r = new Random();
-        int n = 10;
+        int n = r.nextInt(10);
         List<List<Integer>> outer = new LinkedList<>();
         for (int i=0; i<n; i++) {
             List<Integer> inner = new LinkedList<>();
             int k = r.nextInt(10);
             for (int j=0; j<k; j++) {
-                inner.add(r.nextInt(100));
+                inner.add(10 + r.nextInt(90));
             }
             outer.add(inner);
         }
