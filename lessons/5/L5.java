@@ -1,8 +1,15 @@
 import java.util.*;
 
 public class L5 {
-    // Напишите функцию, которая возвращает список из длин списков
+    // Напишите функцию, которая возвращает
+    // список из длин списков
     public static List<Integer> f1(List<List<Integer>> list) {
+        return new LinkedList<>();
+    }
+
+    // Напишите функцию, которая возвращает
+    // список из сумм элементов список
+    public static List<Integer> f2(List<List<Integer>> list) {
         return new LinkedList<>();
     }
 
