@@ -19,7 +19,15 @@ public class L5 {
     // Напишите функцию, которая возвращает
     // список из сумм элементов
     public static List<Integer> f2(List<List<Integer>> list) {
-        return new LinkedList<>();
+        List<Integer> sums = new LinkedList<>();
+        for (List<Integer> l : list) {
+            int s = 0;
+            for (Integer x : l) {
+                s += x;
+            }
+            sums.add(s);
+        }
+        return sums;
     }
 
     // Напишите функцию, которая возвращает список, в котором
@@ -33,7 +41,7 @@ public class L5 {
     //  [6,7],
     //  [],
     //  [8]]
-    // [1,4,6,8,2,3,5,7]
+    // [1,4,6,8,2,5,7,3]
     public static List<Integer> f3(List<List<Integer>> list) {
         return new LinkedList<>();
     }
@@ -65,5 +73,13 @@ public class L5 {
         System.out.println("Lengths:");
         List<Integer> lens = f1(outer);
         printList(lens);
+
+        System.out.println("Sums:");
+        List<Integer> sums = f2(outer);
+        printList(sums);
+
+        System.out.println("Elems");
+        List<Integer> els = f3(outer);
+        printList(els);
     }
 }
