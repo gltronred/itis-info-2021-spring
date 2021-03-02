@@ -43,7 +43,27 @@ public class L5 {
     //  [8]]
     // [1,4,6,8,2,5,7,3]
     public static List<Integer> f3(List<List<Integer>> list) {
-        return new LinkedList<>();
+        List<Integer> res = new LinkedList<>();
+        // создаю список итераторов
+        List<ListIterator<Integer>> its = new LinkedList<>();
+        for (List<Integer> l : list) {
+            its.add(l.listIterator());
+        }
+        // добавляю элементы
+        // b - добавил хотя бы один элемент
+        boolean b = true;
+        while (b) {
+            // ничего не добавлено
+            b = false;
+            for (ListIterator<Integer> it : its) {
+                // если список не закончился, добавляю
+                if (it.hasNext()) {
+                    res.add(it.next());
+                    b = true;
+                }
+            }
+        }
+        return res;
     }
 
     public static void printList(List<Integer> list) {
