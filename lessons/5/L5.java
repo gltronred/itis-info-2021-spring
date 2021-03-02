@@ -22,6 +22,22 @@ public class L5 {
         return new LinkedList<>();
     }
 
+    // Напишите функцию, которая возвращает список, в котором
+    // элементы списков объединены: вначале первый элемент
+    // первого списка, потом первый элемент второго и т.д.
+    // потом второй элемент первого списка, второй второго
+    // и т.д.
+    //
+    // [[1,2,3],
+    //  [4,5],
+    //  [6,7],
+    //  [],
+    //  [8]]
+    // [1,4,6,8,2,3,5,7]
+    public static List<Integer> f3(List<List<Integer>> list) {
+        return new LinkedList<>();
+    }
+
     public static void printList(List<Integer> list) {
         for (Integer el : list) {
             System.out.print(el + " ");
