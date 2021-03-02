@@ -4,11 +4,20 @@ public class L5 {
     // Напишите функцию, которая возвращает
     // список из длин списков
     public static List<Integer> f1(List<List<Integer>> list) {
-        return new LinkedList<>();
+        List<Integer> lens = new LinkedList<>();
+        //ListIterator<List<Integer>> it = list.listIterator();
+        //while (it.hasNext()) {
+        //    List<Integer> el = it.next();
+        //    lens.add(el.size());
+        //}
+        for (List<Integer> el : list) {
+            lens.add(el.size());
+        }
+        return lens;
     }
 
     // Напишите функцию, которая возвращает
-    // список из сумм элементов список
+    // список из сумм элементов
     public static List<Integer> f2(List<List<Integer>> list) {
         return new LinkedList<>();
     }
