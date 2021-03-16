@@ -84,7 +84,11 @@ public class L8 {
         return hm;
     }
     public static Set<String> computeCurrencies(List<Transaction> transactions) {
-        return new HashSet<>();
+        HashSet<String> curs = new HashSet<>();
+        for (Transaction txn : transactions) {
+            curs.add(txn.getCurrency());
+        }
+        return curs;
     }
     public static void main(String[] args) {
         List<Transaction> txns = new LinkedList<Transaction>();
