@@ -28,11 +28,28 @@ public class L8 {
         return balance;
     }
     public static Map<String,Integer> computeBalances(List<Transaction> transactions) {
-        return new HashMap<>();
+        HashMap<String,Integer> hm = new HashMap<>();
+        for (Transaction txn : transactions) {
+            String f = txn.getFrom();
+            if (hm.containsKey(f)) {
+                hm.put(f, hm.get(f) - txn.getAmount());
+            } else {
+                hm.put(f, -txn.getAmount());
+            }
+
+            String t = txn.getTo();
+            if (!hm.containsKey(t)) {
+                hm.put(t, 0);
+            }
+            hm.put(t, hm.get(t) + txn.getAmount());
+        }
+        return hm;
     }
     public static void printPositive(Map<String,Integer> balances) {
         for (Map.Entry<String,Integer> entry : balances.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
+            if (entry.getValue() > 0) {
+                System.out.println(entry.getKey() + ": " + entry.getValue());
+            }
         }
     }
     public static void main(String[] args) {
