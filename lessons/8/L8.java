@@ -5,11 +5,14 @@ class Transaction {
     public String getFrom() { return from; }
     private String to;
     public String getTo() { return to; }
+    private String currency;
+    public String getCurrency() { return currency; }
     private int amount;
     public int getAmount() { return amount; }
-    public Transaction(String from, String to, int amount) {
+    public Transaction(String from, String to, String currency, int amount) {
         this.from = from;
         this.to = to;
+        this.currency = currency;
         this.amount = amount;
     }
 }
@@ -52,10 +55,15 @@ public class L8 {
             }
         }
     }
+    public static Set<String> computeCurrencies(List<Transaction> transactions) {
+        return new HashSet<>();
+    }
     public static void main(String[] args) {
         List<Transaction> txns = new LinkedList<Transaction>();
-        txns.add(new Transaction("Alice","Bob",10));
-        txns.add(new Transaction("Bob","Charlie",5));
+        txns.add(new Transaction("Alice","Bob",   "USD",  10));
+        txns.add(new Transaction("Bob","Charlie", "USD",   5));
+        txns.add(new Transaction("Dave","Charlie","EUR",   5));
+        txns.add(new Transaction("Eve","Frank",   "RUB", 500));
         // 1
         System.out.println(computeBalance(txns, "Bob"));
         // 2
@@ -66,5 +74,14 @@ public class L8 {
         // 3
         System.out.println("Who increased balance:");
         printPositive(balances);
+        // 4
+        // Посчитать баланс с валютами
+        // ??? balances = computeBalancesCur(txns);
+        // 5
+        System.out.println("Какие валюты встречаются?");
+        Set<String> currencies = computeCurrencies(txns);
+        for (String cur : currencies) {
+            System.out.println(cur);
+        }
     }
 }
