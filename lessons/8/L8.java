@@ -55,6 +55,34 @@ public class L8 {
             }
         }
     }
+    public static Map<String,Map<String,Integer>> computeBalancesCur(List<Transaction> transactions) {
+        HashMap<String,Map<String,Integer>> hm = new HashMap<>();
+        for (Transaction txn : transactions) {
+            String cur = txn.getCurrency();
+            String f = txn.getFrom();
+            if (!hm.containsKey(f)) {
+                hm.put(f, new HashMap<>());
+            }
+            Map<String,Integer> famt = hm.get(f);
+            if (!famt.containsKey(cur)) {
+                famt.put(cur, 0);
+            }
+            famt.put(cur, famt.get(cur) - txn.getAmount());
+            hm.put(f,famt);
+
+            String t = txn.getTo();
+            if (!hm.containsKey(t)) {
+                hm.put(t, new HashMap<>());
+            }
+            Map<String,Integer> tamt = hm.get(t);
+            if (!tamt.containsKey(cur)) {
+                tamt.put(cur,0);
+            }
+            tamt.put(cur, tamt.get(cur) + txn.getAmount());
+            hm.put(t,tamt);
+        }
+        return hm;
+    }
     public static Set<String> computeCurrencies(List<Transaction> transactions) {
         return new HashSet<>();
     }
@@ -75,8 +103,16 @@ public class L8 {
         System.out.println("Who increased balance:");
         printPositive(balances);
         // 4
-        // Посчитать баланс с валютами
-        // ??? balances = computeBalancesCur(txns);
+        System.out.println("Посчитать баланс с валютами");
+        Map<String,Map<String,Integer>> bals = computeBalancesCur(txns);
+        for (Map.Entry<String,Map<String,Integer>> entry : bals.entrySet()) {
+            System.out.print(entry.getKey() + ": ");
+            Map<String,Integer> amts = entry.getValue();
+            for (Map.Entry<String,Integer> amt : amts.entrySet()) {
+                System.out.print(amt.getKey() + " " + amt.getValue() + "; ");
+            }
+            System.out.println();
+        }
         // 5
         System.out.println("Какие валюты встречаются?");
         Set<String> currencies = computeCurrencies(txns);
