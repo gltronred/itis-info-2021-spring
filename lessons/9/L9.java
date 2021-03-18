@@ -62,6 +62,7 @@ public class L9 {
             }
             hm.put(t, hm.get(t) + amount);
         }
+        return hm;
     }
 
     public static void print(Map<String,Integer> balances) {
