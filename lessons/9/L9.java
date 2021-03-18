@@ -90,5 +90,6 @@ public class L9 {
 
         // 1
         Map<String,Integer> balances = computeBalances(prices,txns);
+        print(balances);
     }
 }
