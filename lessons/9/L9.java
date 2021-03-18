@@ -35,6 +35,13 @@ public class L9 {
         }
     }
 
+    public static void updateWithDefault(Map<String,Integer> m, int def, String k, int d) {
+        if (!m.containsKey(k)) {
+            m.put(k,def);
+        }
+        m.put(k, m.get(k) + d);
+    }
+
     // Посчитать баланс
     // Транзакции переводятся в валюту в момент транзакции
     public static Map<String,Integer> computeBalances(List<Price> prices, List<Transaction> txns) {
@@ -50,17 +57,8 @@ public class L9 {
 
             int amount = txn.getAmount() * actual.getPrice();
 
-            String f = txn.getFrom();
-            if (!hm.containsKey(f)) {
-                hm.put(f, 0);
-            }
-            hm.put(f, hm.get(f) - amount);
-
-            String t = txn.getTo();
-            if (!hm.containsKey(t)) {
-                hm.put(t, 0);
-            }
-            hm.put(t, hm.get(t) + amount);
+            updateWithDefault(hm, 0, txn.getFrom(), -amount);
+            updateWithDefault(hm, 0, txn.getTo(),    amount);
         }
         return hm;
     }
