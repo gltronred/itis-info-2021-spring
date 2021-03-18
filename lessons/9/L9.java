@@ -35,6 +35,8 @@ public class L9 {
         }
     }
 
+    // Посчитать баланс
+    // Транзакции переводятся в валюту в момент транзакции
     public static Map<String,Integer> computeBalances(List<Price> prices, List<Transaction> txns) {
         return new TreeMap<>();
     }
