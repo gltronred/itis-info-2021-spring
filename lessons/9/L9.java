@@ -46,16 +46,22 @@ public class L9 {
     // Транзакции переводятся в валюту в момент транзакции
     public static Map<String,Integer> computeBalances(List<Price> prices, List<Transaction> txns) {
         HashMap<String,Integer> hm = new HashMap<>();
-        for (Transaction txn : txns) {
-            Price actual = null;
-            for (Price p : prices) {
-                if (txn.getCurrency().equals(p.getCurrency()) &&
-                    txn.getTime() > p.getTime()) {
-                    actual = p;
-                }
+        HashMap<String,TreeMap<Integer,Integer>> priceMap = new HashMap<>();
+        for (Price p : prices) {
+            if (!priceMap.containsKey(p.getCurrency())) {
+                priceMap.put(p.getCurrency(), new TreeMap<>());
             }
+            TreeMap<Integer,Integer> pm = priceMap.get(p.getCurrency());
+            pm.put(p.getTime(), p.getPrice());
+            priceMap.put(p.getCurrency(), pm);
+        }
+        for (Transaction txn : txns) {
+            Integer actual = priceMap
+                .get(txn.getCurrency())
+                .lowerEntry(txn.getTime())
+                .getValue();
 
-            int amount = txn.getAmount() * actual.getPrice();
+            int amount = txn.getAmount() * actual;
 
             updateWithDefault(hm, 0, txn.getFrom(), -amount);
             updateWithDefault(hm, 0, txn.getTo(),    amount);
