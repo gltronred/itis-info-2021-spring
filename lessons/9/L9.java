@@ -50,7 +50,7 @@ public class L9 {
 
             int amount = txn.getAmount() * actual.getPrice();
 
-            String f = txn.getTo();
+            String f = txn.getFrom();
             if (!hm.containsKey(f)) {
                 hm.put(f, 0);
             }
