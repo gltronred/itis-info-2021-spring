@@ -38,7 +38,30 @@ public class L9 {
     // Посчитать баланс
     // Транзакции переводятся в валюту в момент транзакции
     public static Map<String,Integer> computeBalances(List<Price> prices, List<Transaction> txns) {
-        return new TreeMap<>();
+        HashMap<String,Integer> hm = new HashMap<>();
+        for (Transaction txn : txns) {
+            Price actual = null;
+            for (Price p : prices) {
+                if (txn.getCurrency().equals(p.getCurrency()) &&
+                    txn.getTime() > p.getTime()) {
+                    actual = p;
+                }
+            }
+
+            int amount = txn.getAmount() * actual.getPrice();
+
+            String f = txn.getTo();
+            if (!hm.containsKey(f)) {
+                hm.put(f, 0);
+            }
+            hm.put(f, hm.get(f) - amount);
+
+            String t = txn.getTo();
+            if (!hm.containsKey(t)) {
+                hm.put(t, 0);
+            }
+            hm.put(t, hm.get(t) + amount);
+        }
     }
 
     public static void print(Map<String,Integer> balances) {
