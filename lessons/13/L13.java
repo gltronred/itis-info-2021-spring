@@ -2,6 +2,9 @@ import java.util.*;
 import java.util.stream.*;
 
 public class L13 {
+    public static boolean isPrime(int n) {
+        return false;
+    }
     public static void main(String[] args) {
         long n = Stream
             .iterate(1, x -> x+1)
