@@ -28,6 +28,18 @@ public class L14 {
         // 1
         // Посчитать баланс транзакций по людям
         // A: -10, B: 5, C: 10, D: -5, E: -500, F: 500
-        Map<String,Integer> balances = new TreeMap<>();
+        Map<String,Integer> balances = txns.stream()
+            .flatMap(t -> Stream.of(
+                new AbstractMap.SimpleEntry<String,Integer>(t.getFrom(), -t.getAmount()),
+                new AbstractMap.SimpleEntry<String,Integer>(t.getTo(), t.getAmount())))
+            .collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey,
+                                      AbstractMap.SimpleEntry::getValue,
+                                      (a,b) -> a+b));
+
+        // Вывести
+        for (Map.Entry<String,Integer> entry : balances.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+
     }
 }
