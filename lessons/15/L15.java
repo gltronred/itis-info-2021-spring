@@ -36,7 +36,7 @@ public class L15 {
             String ts = entry.getValue().stream()
                 .map(Transaction::toString)
                 .collect(Collectors.joining(","));
-            System.out.println(entry.getKey() + ": " + entry.getValue());
+            System.out.println(entry.getKey() + ": " + ts);
         }
 
     }
