@@ -16,6 +16,9 @@ class Transaction {
         this.currency = currency;
         this.amount = amount;
     }
+    public String toString() {
+        return from + " " + to + " " + currency + " " + amount;
+    }
 }
 
 public class L15 {
@@ -39,5 +42,24 @@ public class L15 {
             System.out.println(entry.getKey() + ": " + ts);
         }
 
+        // Сгруппировать транзакции USD по размеру:
+        // 0<=x<10, 10<=x<100, 100<=x<1000, 1000<=x
+        Map<Integer, List<Transaction>> res2 = txns.stream()
+            .filter(t -> t.getCurrency().equals("USD"))
+            .collect(Collectors.groupingBy(t -> {
+                        int x = t.getAmount();
+                        if (x < 10) return 0;
+                        if (x < 100) return 10;
+                        if (x < 1000) return 100;
+                        return 1000;
+                    }));
+
+        // Вывести
+        for (Map.Entry<Integer,List<Transaction>> entry : res2.entrySet()) {
+            String ts = entry.getValue().stream()
+                .map(Transaction::toString)
+                .collect(Collectors.joining(","));
+            System.out.println(entry.getKey() + ": " + ts);
+        }
     }
 }
