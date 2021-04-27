@@ -19,6 +19,9 @@ public class L16 {
                     }
                 })
             .filter(Files::isRegularFile)
+            .filter(p -> p.getFileName()
+                        .toString()
+                        .endsWith(".java"))
             .forEach(System.out::println);
     }
 }
