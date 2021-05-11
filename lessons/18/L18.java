@@ -1,9 +1,18 @@
 
+// Генерация документации:
+// javadoc -d doc -private L18.java
+
 import java.lang.*;
 import java.lang.annotation.*;
 import java.lang.reflect.*;
 
 class A {
+  /**
+   * Very important method
+   * @deprecated
+   * use System.out.println
+   */
+  @Deprecated
   void method() {
     System.out.println("A");
   }
@@ -17,10 +26,11 @@ class A {
 // аннотация
 @SomeAnnotation(description = "")
 class B extends A {
-  // если опечататься в названии
-  // (например, mehtod), то компилятор
-  // выдаст ошибку, если есть аннотация
-  // Override
+  /** если опечататься в названии
+  (например, mehtod), то компилятор
+  выдаст ошибку, если есть аннотация
+  Override
+  */
   @Override
   void method() {
     System.out.println("B");
@@ -28,6 +38,9 @@ class B extends A {
 }
 
 public class L18 {
+  /**
+   * Main method
+   */
   public static void main(String[] args) {
     A obj = new B();
     obj.method();
